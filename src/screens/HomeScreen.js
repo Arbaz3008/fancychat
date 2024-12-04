@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, FlatList, Image , TouchableOpacity } from "reac
 import React, { useEffect, useState } from "react";
 import { firestore } from "../../firebase"; // Correct import from firebase config
 import { collection, getDocs, query, where } from "firebase/firestore"; // Required Firestore functions
+import { FAB } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const Home = ({ user , navigation }) => {
   const [users, setUsers] = useState([]); // Initialize with an empty array
@@ -55,6 +57,14 @@ const Home = ({ user , navigation }) => {
         renderItem={({ item }) => <RenderCard item={item} />}
         keyExtractor={(item) => item.id} // Use the unique Firestore document ID
       />
+     
+        <FAB
+     icon={() => <Icon name="face" size={24} color="black" />}
+    color="black"
+    style={styles.fab}
+    onPress={() => navigation.navigate("Account")}
+  />
+
     </View>
   );
 };
@@ -90,5 +100,12 @@ const styles = StyleSheet.create({
     width: 60,
     borderRadius: 30,
     backgroundColor: "green"
-  }
+  }, 
+  fab: {
+    position: 'absolute',
+    margin: 16,
+    right: 0,
+    bottom: 0,
+    backgroundColor:"white"
+  },
 });

@@ -12,6 +12,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import ChatScreen from "./src/screens/ChatScreen";
 import { doc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { firestore } from "./firebase"; // Ensure you export correctly from firebase.js
+import AccountScreen from "./src/screens/AccountScreen";
 
 const theme = {
   ...DefaultTheme,
@@ -101,8 +102,9 @@ const Navigation = () => {
   initialParams={{ user }}
 />
 
-
-
+<Stack.Screen  name="Account" options={{ title: "Account" }} >
+  {props => <AccountScreen   {...props} user={user}/>}
+</Stack.Screen>
           </>
         ) : (
           <>
